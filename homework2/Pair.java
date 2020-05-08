@@ -1,19 +1,20 @@
 package lectuer;
 
-public class Pair {
+public class Pair<T,S> {
 
-		private  int first;
-		private  int second;
+		private final T first;
+		private final S second;
 		
-		public Pair(int first, int second) {
+		public Pair(T first, S second) {
 			
 			this.first = first;
 			this.second = second;
 		}
-		public int getFirst() {
+		
+		public T getFirst() {
 			return this.first;
 		}
-		public int getSecond() {
+		public S getSecond() {
 			return this.second;
 		}
 }
