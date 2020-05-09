@@ -14,7 +14,7 @@ public class ListUtil {
 		}
 		System.out.println(replicate(5, "金"));
 		System.out.println(zip(List.of(1, 4, 7), List.of(2, 5, 8)));
-		System.out.println(factors(0));
+		System.out.println(factors(36));
 		System.out.println(perfects(496));
 
 
@@ -64,12 +64,11 @@ public class ListUtil {
 		}
 		List<Integer> factors = new ArrayList<>();
 
-		for (int factor = 1; factor < value; factor++) {
+		for (int factor = 1; factor <= value; factor++) {
 			if (value % factor == 0) {
 				factors.add(factor);
 			}
 		}
-		factors.add(value);
 		return factors;
 	}
 
