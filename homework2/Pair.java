@@ -20,6 +20,6 @@ public class Pair<T,S> {
 		
 		@Override
 		public String toString() {
-		    return "(" + this.getFirst() + "," + this.getSecond() + ")" ;
+			return "(" + this.getFirst() + "," + this.getSecond() + ")";
 		}
 }
