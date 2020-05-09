@@ -16,13 +16,17 @@ public class ListUtil {
 		System.out.println(zip(List.of(1,4,7), List.of(2,5,8)));
 		System.out.println(factors(36));
 		System.out.println(perfects(500));
-//		System.out.println(pairs(List.of(1,2,3,4)));
-		List<String> list = new ArrayList<>();
-		list.add("A");
-		list.add("B");
-		list.add("C");
-		System.out.println(pairs(list));
+		
+//pairsの動作確認		
+		System.out.println(pairs(List.of(1,2,3,4)));
+		System.out.println(pairs(List.of("A", "B", "C")));
+//isSorted動作確認
+		System.out.println(isSorted(List.of(1,2,3,4)));
+		System.out.println(isSorted(List.of(5,6,4,7)));
+//positions動作確認	
+		System.out.println(positions(10, List.of(10,15,20,10,10,33)));
 	}
+		
 	
 	private static List<Integer> evensof(List<Integer> intList){
 		List<Integer> evensList= new ArrayList<>();
@@ -44,17 +48,28 @@ public class ListUtil {
 		return anyValueList;
 	}
 	
-	private static List<List<Integer>> zip (List<Integer> first, List<Integer> second){
-		List<List<Integer>> pair  = new ArrayList<>();
+//	private static List<List<Integer>> zip (List<Integer> first, List<Integer> second){
+//		List<List<Integer>> pair  = new ArrayList<>();
+//		int pairIndex = Math.min(first.size(), second.size());
+//		
+//		for (int i = 0; i < pairIndex; i++) {
+//			List<Integer> value = new ArrayList<>();
+//			value.add(first.get(i));
+//			value.add(second.get(i));
+//			pair.add(value);
+//		}
+//		return pair;
+//	}
+	
+	private static List<Pair<Integer, Integer>> zip (List<Integer> first, List<Integer> second){
+		List<Pair<Integer,Integer>> pairs  = new ArrayList<>();
 		int pairIndex = Math.min(first.size(), second.size());
 		
 		for (int i = 0; i < pairIndex; i++) {
-			List<Integer> value = new ArrayList<>();
-			value.add(first.get(i));
-			value.add(second.get(i));
-			pair.add(value);
+			Pair<Integer, Integer> value = new Pair<>(first.get(i), second.get(i));
+			pairs.add(value);
 		}
-		return pair;
+		return pairs;
 	}
 	
 	private static List<Integer> factors(int value) {
@@ -86,11 +101,57 @@ public class ListUtil {
 		return perfects;
 	}
 	
-	private static List<Pair<T,T>> pairs(List list){
+//	private static <T> List<String> pairs(List<T> list){
+//		List<String> pairs = new ArrayList<>();	
+//		for (int i = 0; i< list.size() - 1; i++) {
+////			T first = list.get(i);
+////			T second = list.get(i + 1);
+//			Pair<T, T> pair = new Pair<>(list.get(i),list.get(i + 1));
+//			pairs.add(pair.toString());	
+//		}
+//		return pairs;
+//	}
+	
+	private static <T> List<Pair<T,T>> pairs(List<T> list){
 		List<Pair<T,T>> pairs = new ArrayList<>();	
-		for (int i = 0; i< list.size - 1; i++) {
-			pairs.add(Pair(list[i], list[i+1]));	
+		for (int i = 0; i< list.size() - 1; i++) {
+			Pair<T, T> pair = new Pair<>(List.copyOf(list).get(i),List.copyOf(list).get(i + 1));
+			pairs.add(pair);	
 		}
 		return pairs;
+	}
+
+	private static boolean isSorted(List<Integer> list) {
+		List<Pair<Integer, Integer>> pairs = ListUtil.pairs(list);
+		boolean result = true;
+		for(Pair<Integer, Integer> pair : pairs) {
+			int first = pair.getFirst();
+			int second = pair.getSecond();
+			if (first > second) {
+				result = false;
+			}else if(result == false){ 
+				continue;
+			}else {
+				result = true;
+			}
+		}
+		return result;
+	}
+	
+	private static List<Integer> positions(int value, List<Integer> list){
+		List<Integer> index = new ArrayList<>();
+		List<Integer> result = new ArrayList<>();
+		for(int i = 0; i < list.size(); i++) {
+			index.add(i);
+		}
+		List<Pair<Integer, Integer>> forMap = ListUtil.zip(list, index);
+		for(Pair<Integer, Integer> pair : forMap) {
+			if(pair.getFirst() == value) {
+				result.add(pair.getSecond());
+			}else {
+				continue;
+			}
+		}
+		return result;
 	}
 }

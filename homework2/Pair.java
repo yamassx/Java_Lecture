@@ -17,4 +17,9 @@ public class Pair<T,S> {
 		public S getSecond() {
 			return this.second;
 		}
+		
+		@Override
+		public String toString() {
+		    return "(" + this.getFirst() + "," + this.getSecond() + ")" ;
+		}
 }
