@@ -7,7 +7,7 @@ public class Pair<T,S> {
 		
 		public Pair(T first, S second) {
 			
-			this.first = first;
+			this.first 	= first;
 			this.second = second;
 		}
 		

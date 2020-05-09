@@ -14,8 +14,9 @@ public class ListUtil {
 		}
 		System.out.println(replicate(5, "金"));
 		System.out.println(zip(List.of(1, 4, 7), List.of(2, 5, 8)));
-		System.out.println(factors(36));
+		System.out.println(factors(0));
 		System.out.println(perfects(496));
+
 
 //pairsの動作確認		
 		System.out.println(pairs(List.of(1, 2, 3, 4)));
@@ -59,7 +60,7 @@ public class ListUtil {
 
 	private static List<Integer> factors(int value) {
 		if (value == 0) {
-			return List.of(0, 0, 0, 0, 0);
+			return List.of(value);
 		}
 		List<Integer> factors = new ArrayList<>();
 
