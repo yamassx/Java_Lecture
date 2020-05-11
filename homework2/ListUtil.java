@@ -17,7 +17,6 @@ public class ListUtil {
 		System.out.println(factors(36));
 		System.out.println(perfects(496));
 
-
 //pairsの動作確認		
 		System.out.println(pairs(List.of(1, 2, 3, 4)));
 		System.out.println(pairs(List.of("A", "B", "C")));
@@ -26,6 +25,8 @@ public class ListUtil {
 		System.out.println(isSorted(List.of(5, 6, 4, 7)));
 //positions動作確認	
 		System.out.println(positions(10, List.of(10, 15, 20, 10, 10, 33)));
+//scalarProduct動作確認
+		System.out.println(scalarProduct(List.of(1, 2, 3), List.of(4, 5, 6)));
 	}
 
 	private static List<Integer> evensof(List<Integer> intList) {
@@ -124,4 +125,14 @@ public class ListUtil {
 		}
 		return result;
 	}
+
+	private static int scalarProduct(List<Integer> v1, List<Integer> v2) {
+		List<Pair<Integer, Integer>> pairList = ListUtil.zip(v1, v2);
+		int innerProduct = 0;
+		for (Pair<Integer, Integer> pair : pairList) {
+			innerProduct += pair.getFirst() * pair.getSecond();
+		}
+		return innerProduct;
+	}
+
 }
