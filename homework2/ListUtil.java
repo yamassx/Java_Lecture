@@ -27,6 +27,19 @@ public class ListUtil {
 		System.out.println(positions(10, List.of(10, 15, 20, 10, 10, 33)));
 //scalarProduct動作確認
 		System.out.println(scalarProduct(List.of(1, 2, 3), List.of(4, 5, 6)));
+//zip4動作確認
+		var tetrads = zip4(List.of(1,2,3), List.of(10,20,30), List.of(100,200,300), List.of(1000,2000,3000));
+		var firstTetrad = tetrads.get(0);  //リストの最初の４つ組
+		var first = firstTetrad.getFirst(); //1
+		var tuple = firstTetrad.getSecond(); 
+		var second = tuple.getFirst(); //10
+		var pair = tuple.getSecond(); 
+		var third = pair.getFirst(); //100
+		var fourth = pair.getSecond(); //1000
+		System.out.println(first);
+		System.out.println(second);
+		System.out.println(third);
+		System.out.println(fourth);
 	}
 
 	private static List<Integer> evensof(List<Integer> intList) {
@@ -48,12 +61,12 @@ public class ListUtil {
 		return anyValueList;
 	}
 
-	private static List<Pair<Integer, Integer>> zip(List<Integer> first, List<Integer> second) {
-		List<Pair<Integer, Integer>> pairs = new ArrayList<>();
+	private static <F, S> List<Pair<F, S>> zip(List<F> first, List<S> second) {
+		List<Pair<F, S>> pairs = new ArrayList<>();
 		int pairIndex = Math.min(first.size(), second.size());
 
 		for (int i = 0; i < pairIndex; i++) {
-			Pair<Integer, Integer> value = new Pair<>(first.get(i), second.get(i));
+			Pair<F, S> value = new Pair<F, S>(first.get(i), second.get(i));
 			pairs.add(value);
 		}
 		return pairs;
@@ -133,6 +146,13 @@ public class ListUtil {
 			innerProduct += pair.getFirst() * pair.getSecond();
 		}
 		return innerProduct;
+	}
+
+	private static List<Pair<Integer, Pair<Integer, Pair<Integer, Integer>>>> zip4(List<Integer> first,
+			List<Integer> second, List<Integer> third, List<Integer> fourth) {
+
+		return ListUtil.zip(first, ListUtil.zip(second, ListUtil.zip(third, fourth)));
+
 	}
 
 }
