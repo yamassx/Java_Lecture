@@ -1,35 +1,39 @@
 package poli_lecture;
 
+import java.util.Collections;
 import java.util.List;
 
 class Menu {
-	private String       name;
-	private String       type;
+	private String name;
+	private String type;
 	private List<Recipe> recipes;
-	private int          cal;
 	
+
 	Menu(String name, String type, List<Recipe> recipes) {
-		
+
 		this.name = name;
 		this.type = type;
-		this.recipes = recipes;
+		this.recipes = Collections.unmodifiableList(recipes);
 	}
 
 	String getName() {
-		return name;
+		return this.name;
 	}
 
 	String getType() {
-		return type;
+		return this.type;
 	}
 
 	List<Recipe> getRecipes() {
-		return recipes;
+		return this.recipes;
 	}
 
-	int getCal() {
-		return cal;
-	}
-	
-	
+    int getCal() {
+    	int total = 0;
+    	for (Recipe recipe : this.recipes) {
+    		total += recipe.getCal();
+    	}
+    	return total;
+    }
+
 }
